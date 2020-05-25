@@ -2,12 +2,16 @@ const Koa = require('koa')
 const app = new Koa()
 const views = require('koa-views')
 const json = require('koa-json')
+const cross = require('koa2-cors')
 const onerror = require('koa-onerror')
 const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 
 const index = require('./routes/index')
 const users = require('./routes/users')
+
+//cross
+app.use(cross())
 
 // error handler
 onerror(app)
@@ -40,5 +44,7 @@ app.use(users.routes(), users.allowedMethods())
 app.on('error', (err, ctx) => {
   console.error('server error', err, ctx)
 });
+
+
 
 module.exports = app

@@ -14,7 +14,7 @@
         <el-button
           type="primary"
           style="width: 100%;background: #505458;border: none"
-          v-on:click="login"
+          @click="login"
         >登录</el-button>
       </el-form-item>
     </el-form>
@@ -35,7 +35,11 @@ export default {
     };
   },
   methods: {
-    login() {}
+    login() {
+      this.$fetch("/json").then(res => {
+        console.log(res);
+      });
+    }
   }
 };
 </script>
@@ -48,7 +52,6 @@ export default {
   width: 100%;
   background-size: cover;
   position: fixed;
-  z-index: -11;
 }
 body {
   margin: 0px;
